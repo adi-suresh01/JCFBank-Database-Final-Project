@@ -7,10 +7,7 @@ from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
 import mysql.connector
 
-
-
 app = Flask(__name__)
-
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:password123@localhost/BANK2'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'thisisasecretkey'
@@ -61,9 +58,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 
-
 @app.route('/')
-
 def home():
     return render_template('home.html')
 
