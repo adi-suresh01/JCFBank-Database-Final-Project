@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, redirect
+from flask import Flask, render_template, url_for, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from flask_wtf import FlaskForm
@@ -6,8 +6,12 @@ from wtforms import StringField, PasswordField, SubmitField, IntegerField
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
 from sqlalchemy.ext.automap import automap_base
+import pickle
+import numpy as np
 import mysql.connector
 
+
+# model=pickle.load(open('fraud.pkl', 'rb'))
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:password123@localhost/BANK2'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -64,10 +68,15 @@ class User(db.Model, UserMixin):
 class TransactionForm(FlaskForm):
     acc_no = StringField(validators=[
         InputRequired()], render_kw={"placeholder": "Enter Your Account Number"})
+    type = StringField(validators=[
+        InputRequired()], render_kw={"placeholder": "Enter type of transfer"})
     amount = IntegerField(validators=[
         InputRequired()], render_kw={"placeholder": "Enter Amount to be transferred"})
+    old_bal = IntegerField(validators=[
+        InputRequired()], render_kw={"placeholder": "Enter your balance"})
     to_acc = StringField(validators=[
         InputRequired()], render_kw={"placeholder": "Enter Account number you'd like to transfer to"})
+    # new_bal = (old_bal - amount)
 
     submit = SubmitField('Submit')
 
@@ -179,6 +188,13 @@ def new_transaction():
 
     if form.validate_on_submit():
         return redirect(url_for('success'))
+
+    # if form.validate_on_submit():
+    #     features = np.array([[form.type.data, form.amount.data, form.old_bal.data, form.new_bal]])
+    #     if model.predict(features) == 'NOT FRAUD':
+    #         return redirect(url_for('success'))
+    #     else:
+    #         return model.predict(features)
     return render_template('transaction.html', form=form)
 
      #     new_transaction = transaction()
