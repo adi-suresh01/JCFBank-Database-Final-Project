@@ -8,15 +8,9 @@
    <h1>New Transaction Page</h1>
     <form method="POST" action="">
         {{ form.hidden_tag() }}
-        {{ form.ssn }}
-        {{ form.fname }}
-        {{ form.lname }}
-        {{ form.dob }}
-        {{ form.email }}
-        {{ form.phone }}
-        {{ form.street }}
-        {{ form.city }}
-        {{ form.state }}
+        {{ form.acc_no }}
+        {{ form.amount }}
+        {{ form.to_acc }}
         {{ form.submit }}
     </form>
 </body>

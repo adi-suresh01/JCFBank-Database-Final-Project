@@ -19,7 +19,7 @@ app.app_context().push()
 Base = automap_base()
 Base.prepare(db.engine, reflect=True)
 client = Base.classes.client
-transaction = Base.classes.transaction
+# transaction = Base.classes.transaction
 
 app.app_context().push()
 
@@ -61,11 +61,15 @@ class User(db.Model, UserMixin):
 #         self.state = state
 
 
-class TransForm(FlaskForm):
+class TransactionForm(FlaskForm):
     acc_no = StringField(validators=[
         InputRequired()], render_kw={"placeholder": "Enter Your Account Number"})
-    amount = IntegerField(validators=[InputRequired()], render_kw={"placeholder", "Enter Amount to be transferred"})
-    to_acc = StringField(validators=[InputRequired()], render_kw={"placeholder", "Enter Account number you'd like to transfer to"})
+    amount = IntegerField(validators=[
+        InputRequired()], render_kw={"placeholder": "Enter Amount to be transferred"})
+    to_acc = StringField(validators=[
+        InputRequired()], render_kw={"placeholder": "Enter Account number you'd like to transfer to"})
+
+    submit = SubmitField('Submit')
 
 
 class ClientForm(FlaskForm):
@@ -168,11 +172,21 @@ def new_client():
 
 # (ssn=form.ssn.data, fname=form.fname.data, lname=form.lname.data, dob=form.dob.data, email=form.email.data, phone=form.phone.data, street=form.street.data, city=form.city.data, state=form.state.data)
 
-# @app.route('/transaction', methods=['GET', 'POST'])
-# def transaction():
-#     form = Transaction.form()
-#      if form.validate_on_submit():
-#          new_transaction = transaction()
+
+@app.route('/transaction', methods=['GET', 'POST'])
+def new_transaction():
+    form = TransactionForm()
+
+    if form.validate_on_submit():
+        return redirect(url_for('success'))
+    return render_template('transaction.html', form=form)
+
+     #     new_transaction = transaction()
+
+
+@app.route('/trans_success', methods=['GET', 'POST'])
+def success():
+    return render_template('trans_success.html')
 
 
 @ app.route('/register', methods=['GET', 'POST'])
