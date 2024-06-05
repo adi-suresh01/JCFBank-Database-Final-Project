@@ -1,0 +1,56 @@
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+--
+-- Host: localhost    Database: bank2
+-- ------------------------------------------------------
+-- Server version	8.0.35
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `cash_investment`
+--
+
+DROP TABLE IF EXISTS `cash_investment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `cash_investment` (
+  `receipt` double NOT NULL,
+  `inv_date` date DEFAULT NULL,
+  `amt_inv` double DEFAULT NULL,
+  `rate_offered` float DEFAULT NULL,
+  `trans_id` double DEFAULT NULL,
+  PRIMARY KEY (`receipt`),
+  KEY `trans_id` (`trans_id`),
+  CONSTRAINT `cash_investment_ibfk_1` FOREIGN KEY (`trans_id`) REFERENCES `transaction` (`trans_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `cash_investment`
+--
+
+LOCK TABLES `cash_investment` WRITE;
+/*!40000 ALTER TABLE `cash_investment` DISABLE KEYS */;
+INSERT INTO `cash_investment` VALUES (176240,'2023-01-24',35445,0.03,849839),(200635,'2023-11-03',36040,0.1,792965),(252377,'2023-08-17',15375,0.08,773976),(310665,'2023-09-25',13170,0.07,600076),(367641,'2023-04-13',21954,0.06,884493),(382231,'2023-01-12',36387,0.09,645152),(455168,'2023-02-19',33048,0.05,642046),(806782,'2023-03-24',35524,0.04,282406),(810269,'2023-04-09',31984,0.09,755732),(837064,'2023-04-14',30427,0.04,240089);
+/*!40000 ALTER TABLE `cash_investment` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-12-06 15:24:39

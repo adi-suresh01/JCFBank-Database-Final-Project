@@ -1,0 +1,56 @@
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+--
+-- Host: localhost    Database: bank2
+-- ------------------------------------------------------
+-- Server version	8.0.35
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `issues`
+--
+
+DROP TABLE IF EXISTS `issues`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `issues` (
+  `index2` int NOT NULL,
+  `coupon_no` double DEFAULT NULL,
+  `branch_no` double DEFAULT NULL,
+  PRIMARY KEY (`index2`),
+  KEY `coupon_no` (`coupon_no`),
+  KEY `branch_no` (`branch_no`),
+  CONSTRAINT `issues_ibfk_1` FOREIGN KEY (`coupon_no`) REFERENCES `bond` (`coupon_no`),
+  CONSTRAINT `issues_ibfk_2` FOREIGN KEY (`branch_no`) REFERENCES `bank` (`branch_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `issues`
+--
+
+LOCK TABLES `issues` WRITE;
+/*!40000 ALTER TABLE `issues` DISABLE KEYS */;
+INSERT INTO `issues` VALUES (1,9037508365,556240),(2,9249769065,653853),(3,2099541890,160780),(4,1298253429,788531),(5,9898158824,187541),(6,5058289974,161107),(7,5724833533,531837),(8,2236165534,576546),(9,2647850241,701300),(10,5072782034,871772);
+/*!40000 ALTER TABLE `issues` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-12-06 15:24:40

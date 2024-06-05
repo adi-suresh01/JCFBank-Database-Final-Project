@@ -1,0 +1,56 @@
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
+--
+-- Host: localhost    Database: bank2
+-- ------------------------------------------------------
+-- Server version	8.0.35
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!50503 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `from_or_to`
+--
+
+DROP TABLE IF EXISTS `from_or_to`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `from_or_to` (
+  `index1` int NOT NULL,
+  `trans_id` double DEFAULT NULL,
+  `acc_no` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`index1`),
+  KEY `trans_id` (`trans_id`),
+  KEY `acc_no` (`acc_no`),
+  CONSTRAINT `from_or_to_ibfk_1` FOREIGN KEY (`trans_id`) REFERENCES `transaction` (`trans_id`),
+  CONSTRAINT `from_or_to_ibfk_2` FOREIGN KEY (`acc_no`) REFERENCES `bank_account` (`acc_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `from_or_to`
+--
+
+LOCK TABLES `from_or_to` WRITE;
+/*!40000 ALTER TABLE `from_or_to` DISABLE KEYS */;
+INSERT INTO `from_or_to` VALUES (1,600076,'0634-6008-5089-0042'),(2,884493,'8576-8537-4845-8696'),(3,642046,'7674-3966-2600-0176'),(4,240089,'2040-3207-8177-0175'),(5,282406,'6418-2280-2913-7885'),(6,773976,'9090-3282-6637-0732'),(7,849839,'4432-4474-5427-9937'),(8,755732,'9618-0575-5694-9468'),(9,792965,'4989-0839-7981-7646'),(10,645152,'0279-6808-0475-7018');
+/*!40000 ALTER TABLE `from_or_to` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2023-12-06 15:24:40
